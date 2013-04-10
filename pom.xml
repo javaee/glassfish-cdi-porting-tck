@@ -52,7 +52,7 @@
 
     <groupId>org.glassfish</groupId>
     <artifactId>gf-cdi-porting-package-tck11</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <name>GlassFish Porting Package for the CDI TCK 1.1</name>
 
