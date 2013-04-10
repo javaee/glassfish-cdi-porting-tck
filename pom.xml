@@ -63,6 +63,10 @@
     </licenses>
     <url>http://http://java.net/projects/gf-cdi-porting-tck</url>
 
+    <scm>
+        <developerConnection>scm:svn:https://svn.java.net/svn/gf-cdi-porting-tck~svn/trunk/</developerConnection>
+    </scm>
+
     <properties>
         <javax.el.version>3.0-b08</javax.el.version>
         <cdi.api.version>1.1-20130403</cdi.api.version>
@@ -73,9 +77,9 @@
 
     <dependencies>
         <dependency>
-          <groupId>org.glassfish.main.common</groupId>
-          <version>4.0-SNAPSHOT</version>
-          <artifactId>container-common</artifactId>
+            <groupId>org.glassfish.main.common</groupId>
+            <version>4.0-SNAPSHOT</version>
+            <artifactId>container-common</artifactId>
         </dependency>
 
         <dependency>
@@ -110,4 +114,13 @@
 
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.1</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
