@@ -41,7 +41,8 @@
 
 -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -50,30 +51,63 @@
         <version>3</version>
     </parent>
 
-<groupId>org.glassfish</groupId>
-<artifactId>gf-cdi-porting-package-tck11</artifactId>
-<version>1.0-SNAPSHOT</version>
+    <groupId>org.glassfish</groupId>
+    <artifactId>gf-cdi-porting-package-tck11</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-<name>GlassFish Porting Package for the CDI TCK 1.1</name>
+    <name>GlassFish Porting Package for the CDI TCK 1.1</name>
 
-<licenses>
-<license>
-</license>
-</licenses>
-<url>http://http://java.net/projects/gf-cdi-porting-tck</url>
+    <licenses>
+        <license>
+        </license>
+    </licenses>
+    <url>http://http://java.net/projects/gf-cdi-porting-tck</url>
 
-<properties>
-  <weld-porting.version>2.0.0-SNAPSHOT</weld-porting.version>
-</properties>
+    <properties>
+        <javax.el.version>3.0-b08</javax.el.version>
+        <cdi.api.version>1.1-20130403</cdi.api.version>
+        <jboss.spec.servlet.version>1.0.0.Beta2</jboss.spec.servlet.version>
+        <cdi.tck-1-1.version>1.1.0.CR1</cdi.tck-1-1.version>
+        <weld.version>2.0.0-SNAPSHOT</weld.version>
+    </properties>
 
-<dependencies>
+    <dependencies>
+        <dependency>
+          <groupId>org.glassfish.main.common</groupId>
+          <version>4.0-SNAPSHOT</version>
+          <artifactId>container-common</artifactId>
+        </dependency>
 
-<dependency>
-<groupId>org.jboss.weld</groupId>
-<artifactId>weld-porting-package-tck11</artifactId>
-<version>${weld-porting.version}</version>
-</dependency>
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <version>${cdi.api.version}</version>
+        </dependency>
 
-</dependencies>
+        <dependency>
+            <groupId>org.jboss.weld</groupId>
+            <artifactId>weld-core</artifactId>
+            <version>${weld.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.cdi.tck</groupId>
+            <artifactId>cdi-tck-api</artifactId>
+            <version>${cdi.tck-1-1.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>${javax.el.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.spec.javax.servlet</groupId>
+            <artifactId>jboss-servlet-api_3.0_spec</artifactId>
+            <version>${jboss.spec.servlet.version}</version>
+        </dependency>
+
+    </dependencies>
 
 </project>

@@ -40,5 +40,38 @@
 
 package org.glassfish.weld.tck;
 
-public class BeansImpl extends org.jboss.weld.tck.BeansImpl {
+import com.sun.enterprise.container.common.impl.util.JavaEEIOUtilsImpl;
+import org.jboss.cdi.tck.spi.Beans;
+
+import java.io.IOException;
+
+public class BeansImpl implements Beans {
+
+    public boolean isProxy(Object instance) {
+        return instance.getClass().getName().indexOf("_$$_Weld") > 0;
+    }
+
+    @Override
+    public byte[] passivate(Object instance) throws IOException {
+
+        JavaEEIOUtilsImpl ioUtil = new JavaEEIOUtilsImpl();
+
+        return ioUtil.serializeObject(instance, true);
+
+    }
+
+
+    @Override
+    public Object activate(byte[] bytes) throws IOException, ClassNotFoundException {
+
+        JavaEEIOUtilsImpl ioUtil = new JavaEEIOUtilsImpl();
+
+        try {
+            return ioUtil.deserializeObject(bytes, true, Thread.currentThread().getContextClassLoader());
+        } catch (Exception e) {
+            throw new IOException(e);
+        }
+
+    }
+
 }
