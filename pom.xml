@@ -63,6 +63,18 @@
             <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
+
+    <developers>
+        <developer>
+            <id>mtaube</id>
+            <name>Mason Taube</name>
+            <organization>Oracle</organization>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <url>http://java.net/projects/gf-cdi-porting-tck</url>
 
     <mailingLists>
@@ -78,6 +90,11 @@
         <developerConnection>scm:svn:https://svn.java.net/svn/gf-cdi-porting-tck~svn/trunk</developerConnection>
         <url>https://svn.java.net/svn/gf-cdi-porting-tck~svn/trunk</url>
     </scm>
+
+    <issueManagement>
+        <system>IssueTracker</system>
+        <url>http://java.net/jira/browse/GF_CDI_PORTING_TCK</url>
+    </issueManagement>
 
     <repositories>
         <repository>
