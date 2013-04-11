@@ -47,24 +47,58 @@
     <parent>
         <groupId>net.java</groupId>
         <artifactId>jvnet-parent</artifactId>
-        <version>3</version>
+        <version>4</version>
     </parent>
-
     <groupId>org.glassfish</groupId>
     <artifactId>gf-cdi-porting-package-tck11</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    
     <name>GlassFish Porting Package for the CDI TCK 1.1</name>
 
     <licenses>
         <license>
         </license>
     </licenses>
-    <url>http://http://java.net/projects/gf-cdi-porting-tck</url>
+    <url>http://java.net/projects/gf-cdi-porting-tck</url>
+
+    <mailingLists>
+        <mailingList>
+            <name>commits</name>
+            <post>commits@gf-cdi-porting-tck.java.net</post>
+            <archive>http://java.net/projects/gf-cdi-porting-tck/lists/commits/archive</archive>
+        </mailingList>
+    </mailingLists>
 
     <scm>
-        <developerConnection>scm:svn:https://svn.java.net/svn/gf-cdi-porting-tck~svn/tags/gf-cdi-porting-package-tck11-1.0</developerConnection>
+        <connection>scm:svn:https://svn.java.net/svn/gf-cdi-porting-tck~svn/trunk</connection>
+        <developerConnection>scm:svn:https://svn.java.net/svn/gf-cdi-porting-tck~svn/trunk</developerConnection>
+        <url>https://svn.java.net/svn/gf-cdi-porting-tck~svn/trunk</url>
     </scm>
+
+    <repositories>
+        <repository>
+            <id>jvnet-nexus-promoted</id>
+            <name>Java.net Promoted Repositories</name>
+            <url>https://maven.java.net/content/repositories/promoted/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>jboss-nexus-release</id>
+            <name>Jboss Release Repository</name>
+            <url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <properties>
         <javax.el.version>3.0-b08</javax.el.version>
@@ -72,44 +106,129 @@
         <jboss.spec.servlet.version>1.0.0.Beta2</jboss.spec.servlet.version>
         <cdi.tck-1-1.version>1.1.0.CR1</cdi.tck-1-1.version>
         <weld.version>2.0.0.CR1</weld.version>
+        <nucleus.version>4.0-b84</nucleus.version>
     </properties>
-
+    
     <dependencies>
         <dependency>
             <groupId>org.glassfish.main.common</groupId>
-            <version>4.0-SNAPSHOT</version>
+            <version>${nucleus.version}</version>
             <artifactId>container-common</artifactId>
         </dependency>
-
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
             <version>${cdi.api.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.jboss.weld</groupId>
             <artifactId>weld-core</artifactId>
-            <version>2.0.0.CR1</version>
+            <version>${weld.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.jboss.cdi.tck</groupId>
             <artifactId>cdi-tck-api</artifactId>
             <version>${cdi.tck-1-1.version}</version>
         </dependency>
-
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>javax.el-api</artifactId>
             <version>${javax.el.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.jboss.spec.javax.servlet</groupId>
             <artifactId>jboss-servlet-api_3.0_spec</artifactId>
             <version>${jboss.spec.servlet.version}</version>
         </dependency>
+    </dependencies>    
+    
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <finalName>${project.artifactId}</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.5</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.5.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.9</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.2.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>1.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.4.1</version>
+                    <configuration>
+                        <releaseProfiles>jvnet-release,release</releaseProfiles>
+                        <arguments>-Dmaven.repo.local=${maven.repo.local}</arguments>
+                        <goals>deploy</goals>
+                        <waitBeforeTagging>10</waitBeforeTagging>
+                        <providerImplementations>
+                            <svn>javasvn</svn>
+                        </providerImplementations>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>com.google.code.maven-scm-provider-svnjava</groupId>
+                            <artifactId>maven-scm-provider-svnjava</artifactId>
+                            <version>2.0.5</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>    
 
-    </dependencies>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-enforcer-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>enforce-versions</id>
+                                <goals>
+                                    <goal>enforce</goal>
+                                </goals>
+                                <configuration>
+                                    <rules>
+                                        <requireMavenVersion>
+                                            <version>[3.0.4,)</version>
+                                            <message>You need Maven 3.0.4 or above!</message>
+                                        </requireMavenVersion>
+                                    </rules>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>                    
+                </plugins>
+            </build>
+        </profile>
+    </profiles>    
 </project>
