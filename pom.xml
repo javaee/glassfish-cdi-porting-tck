@@ -57,6 +57,10 @@
 
     <licenses>
         <license>
+            <name>CDDL + GPLv2 with classpath exception</name>
+            <url>http://glassfish.java.net/nonav/public/CDDL+GPL_1_1.html</url>
+            <distribution>repo</distribution>
+            <comments>A business-friendly OSS license</comments>
         </license>
     </licenses>
     <url>http://java.net/projects/gf-cdi-porting-tck</url>
