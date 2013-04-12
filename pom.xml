@@ -161,7 +161,7 @@
             <artifactId>jboss-servlet-api_3.0_spec</artifactId>
             <version>${jboss.spec.servlet.version}</version>
         </dependency>
-    </dependencies>    
+    </dependencies>
     
     <build>
         <defaultGoal>install</defaultGoal>
@@ -189,7 +189,7 @@
                     <version>2.4.1</version>
                     <configuration>
                         <mavenExecutorId>forked-path</mavenExecutorId>
-                        <releaseProfiles>release</releaseProfiles>
+                        <arguments>-Prelease</arguments>
                         <goals>deploy</goals>
                         <waitBeforeTagging>10</waitBeforeTagging>
                         <providerImplementations>
