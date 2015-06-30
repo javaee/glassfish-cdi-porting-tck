@@ -1,7 +1,7 @@
 /*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2013-2015 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
@@ -40,38 +40,39 @@
 
 package org.glassfish.weld.tck;
 
-import com.sun.enterprise.container.common.impl.util.JavaEEIOUtilsImpl;
 import org.jboss.cdi.tck.spi.Beans;
 
 import java.io.IOException;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class BeansImpl implements Beans {
 
+    private final static AtomicLong count = new AtomicLong();
+
+    private final ConcurrentHashMap objects = new ConcurrentHashMap();
+
+    @Override
     public boolean isProxy(Object instance) {
         return instance.getClass().getName().indexOf("_$$_Weld") > 0;
     }
 
     @Override
-    public byte[] passivate(Object instance) throws IOException {
-
-        JavaEEIOUtilsImpl ioUtil = new JavaEEIOUtilsImpl();
-
-        return ioUtil.serializeObject(instance, true);
-
+    public synchronized byte[] passivate(Object instance) throws IOException {
+        // We are not really testing the implementation of passivate and activation.
+        //  Just save the object and return it later in activate.
+        long curCount = count.getAndIncrement();
+        byte[] bytes = ("" + curCount ).getBytes();
+        objects.put( bytes, instance );
+        return bytes;
     }
 
 
     @Override
-    public Object activate(byte[] bytes) throws IOException, ClassNotFoundException {
-
-        JavaEEIOUtilsImpl ioUtil = new JavaEEIOUtilsImpl();
-
-        try {
-            return ioUtil.deserializeObject(bytes, true, Thread.currentThread().getContextClassLoader());
-        } catch (Exception e) {
-            throw new IOException(e);
-        }
-
+    public synchronized Object activate(byte[] bytes) throws IOException, ClassNotFoundException {
+        // We are not really testing the implementation of passivate and activation.
+        //  Just return the object that was saved by passivate.
+        return objects.get( bytes );
     }
 
 }
