@@ -86,9 +86,9 @@
     </mailingLists>
 
     <scm>
-        <connection>scm:svn:https://svn.java.net/svn/gf-cdi-porting-tck~svn/trunk</connection>
-        <developerConnection>scm:svn:https://svn.java.net/svn/gf-cdi-porting-tck~svn/trunk</developerConnection>
-        <url>https://svn.java.net/svn/gf-cdi-porting-tck~svn/trunk</url>
+        <connection>scm:git:https://alm.oraclecorp.com/caf/s/caf_javaee_4881/scm/glassfish-cdi-porting-tck.git</connection>
+        <developerConnection>scm:git:https://alm.oraclecorp.com/caf/s/caf_javaee_4881/scm/glassfish-cdi-porting-tck.git</developerConnection>
+        <url>https://alm.oraclecorp.com/caf/#projects/javaee/scm/glassfish-cdi-porting-tck.git/tree?revision=master</url>
     </scm>
 
     <issueManagement>
@@ -187,7 +187,7 @@
                         </dependency>
                     </dependencies>
                 </plugin>
-            </plugins>
+		</plugins>
         </pluginManagement>
     </build>    
 
