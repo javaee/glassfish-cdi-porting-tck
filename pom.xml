@@ -176,7 +176,7 @@
                         <goals>deploy</goals>
                         <waitBeforeTagging>10</waitBeforeTagging>
                         <providerImplementations>
-                            <svn>javasvn</svn>
+                            <svn>jgit</svn>
                         </providerImplementations>
                     </configuration>
                     <dependencies>
