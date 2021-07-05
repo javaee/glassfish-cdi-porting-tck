@@ -58,7 +58,7 @@
     <licenses>
         <license>
             <name>CDDL + GPLv2 with classpath exception</name>
-            <url>http://glassfish.java.net/nonav/public/CDDL+GPL_1_1.html</url>
+            <url>https://oss.oracle.com/licenses/CDDL+GPL-1.1</url>
             <distribution>repo</distribution>
             <comments>A business-friendly OSS license</comments>
         </license>
@@ -75,7 +75,7 @@
         </developer>
     </developers>
 
-    <url>http://java.net/projects/gf-cdi-porting-tck</url>
+    <url>https://github.com/javaee/glassfish-cdi-porting-tck</url>
 
     <mailingLists>
         <mailingList>
@@ -94,7 +94,7 @@
 
     <issueManagement>
         <system>IssueTracker</system>
-        <url>http://java.net/jira/browse/GF_CDI_PORTING_TCK</url>
+        <url>https://github.com/javaee/glassfish-cdi-porting-tck/issues</url>
     </issueManagement>
 
     <repositories>
@@ -125,7 +125,7 @@
     <properties>
         <javax.el.version>3.0-b08</javax.el.version>
         <cdi.api.version>1.2</cdi.api.version>
-        <cdi.tck.version>2.0.0.Final</cdi.tck.version>
+        <cdi.tck.version>2.0.3.Final</cdi.tck.version>
         <weld.version>3.0.0.Final</weld.version>
     </properties>
     
